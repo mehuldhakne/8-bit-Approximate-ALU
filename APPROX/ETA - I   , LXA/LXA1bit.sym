@@ -1,0 +1,50 @@
+USER SYMBOL by DSCH 3.9
+DATE 16-10-2026 21:16:14
+SYM  #LXR1bit
+BB(0,0,30,90)
+TITLE 10 -7  #LXR1bit
+MODEL 6000
+REC(5,5,20,80)
+PIN(0,40,0.00,0.00)B_inv
+PIN(0,30,0.00,0.00)B
+PIN(0,10,0.00,0.00)A
+PIN(0,60,0.00,0.00)O_inv
+PIN(0,20,0.00,0.00)A_inv
+PIN(0,80,0.00,0.00)S1
+PIN(0,50,0.00,0.00)B_set
+PIN(0,70,0.00,0.00)S0
+PIN(30,10,2.00,1.00)O0
+LIG(0,40,5,40)
+LIG(0,30,5,30)
+LIG(0,10,5,10)
+LIG(0,60,5,60)
+LIG(0,20,5,20)
+LIG(0,80,5,80)
+LIG(0,50,5,50)
+LIG(0,70,5,70)
+LIG(25,10,30,10)
+LIG(5,5,5,85)
+LIG(5,5,25,5)
+LIG(25,5,25,85)
+LIG(25,85,5,85)
+VLG module LXR1bit( B_inv,B,A,O_inv,A_inv,S1,B_set,S0,
+VLG  O0);
+VLG  input B_inv,B,A,O_inv,A_inv,S1,B_set,S0;
+VLG  output O0;
+VLG  wire w2,w3,w5,w6,w7,w8,w11,w13;
+VLG  wire w17,w20,w21,w22;
+VLG  tgmux21 #(2) TgMux21_1(w5,w2,w3,B_inv);
+VLG  not #(1) inv_2(w13,A);
+VLG  not #(1) inv_3(w3,w2);
+VLG  tgmux21 #(2) TgMux21_4(w2,B,vdd,B_set);
+VLG  tgmux21 #(2) TgMux21_5(w17,A,w13,A_inv);
+VLG  xor #(4) xor2_6(w6,w17,w5);
+VLG  nand #(2) nand2_7(w7,w5,w17);
+VLG  nor #(2) nor2_8(w8,w17,w5);
+VLG  tgmux21 #(2) TgMux21_9(O0,w11,w20,O_inv);
+VLG  not #(1) inv_10(w20,w11);
+VLG  mux #(5) mux_11(w21,w7,w8,S0);
+VLG  mux #(5) mux_12(w22,w6,w6,S0);
+VLG  mux #(6) mux_13(w11,w22,w21,S1);
+VLG endmodule
+FSYM
